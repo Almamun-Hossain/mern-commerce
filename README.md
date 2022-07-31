@@ -1,2 +1,2 @@
 # mern-commerce
-Mern Commerce is a Completer Ecomerce Project using Mongo, Express, Node and React JS.
+Mern Commerce is a Complete Ecommerce project using Mongo, Express, Node and React JS.
