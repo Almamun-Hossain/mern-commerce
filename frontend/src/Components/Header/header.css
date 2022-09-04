@@ -1,0 +1,33 @@
+nav {
+  font-size: 20px;
+}
+.navbar-brand {
+  font-size: 30px;
+}
+.nav-link {
+  font-size: 18px;
+  font-weight: 300;
+}
+.nav-link.active {
+  color: #ff4545 !important;
+}
+.nav-link:hover,
+.iconic-link:hover {
+  color: #ff4545 !important;
+}
+.iconic-action {
+  flex-direction: row !important;
+}
+.iconic-link {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+@media (max-width: 992px) {
+  .iconic-actio {
+    order: 2;
+  }
+  .toggle-icon {
+    order: 3;
+  }
+}

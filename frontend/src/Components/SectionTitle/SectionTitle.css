@@ -1,0 +1,23 @@
+.section__headline{
+    position: relative;
+    text-align: center;
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+.section__headline::after{
+    content: "";
+    position: absolute;
+    background-color: #ff4545;
+    padding: 0px;
+    width: 0px;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-in;
+    height: 3px;
+}
+
+.section__headline:hover::after{
+    width: 150px;
+}

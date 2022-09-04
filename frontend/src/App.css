@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  position: relative;
+  width: 100%;
+  font-family: "Nunito", sans-serif;
+}
+
+/* Custom Button */
+.btn-dark {
+  background-color: #212529 !important;
+  color: #ffffff !important;
+  border-radius: 0 !important;
+  padding: 10px 30px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  font-size: 17px !important;
+}
+.btn-dark:hover {
+  background-color: #ff4545 !important;
+}
+
+/* Login and Registration Form Controll Design */
+.form-container {
+  position: relative;
+  width: 40%;
+  margin: 5% auto;
+  background-color: #e8e8e8e8;
+  padding: 30px;
+}
+
+/* .navigate-link-container:hover{
+  
+} */
+.form-navigate-link {
+  width: 50%;
+  position: relative;
+  text-decoration: none;
+  color: #212529;
+  font-weight: 200;
+  transition: all 0.3s ease;
+}
+
+.form-navigate-link:hover,
+.forgot-password-link:hover {
+  color: #ff4545;
+  text-decoration: underline;
+}
+
+/* Customize Form Control */
+
+.form-control {
+  border-radius: 0 !important;
+}
+.form-control:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #ff4545 !important;
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.sigle-item-input input:focus {
+  border: 1px solid #ff4545;
+}
+
+.customize-checkbox {
+  position: relative;
+  border-radius: 0;
+  border: 1px solid #ff4545;
+}
+
+input[type="checkbox"] + label:after {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  content: "\f00c";
+  font-family: "FontAwesome";
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  opacity: 0;
+  width: 15px;
+  text-align: center;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  color: #ff4545;
+}
+
+.remember-label {
+  position: relative;
+  padding-left: 20px;
+  line-height: 15px;
+
+  font-weight: 200;
+  margin: 0;
+}
+
+.forgot-password-link {
+  text-decoration: none;
+  font-weight: 200;
+  color: #212529;
+}

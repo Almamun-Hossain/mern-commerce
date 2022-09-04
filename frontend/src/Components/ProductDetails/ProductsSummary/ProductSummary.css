@@ -1,0 +1,123 @@
+.price-box .regular-price {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 10px;
+  color: #ff4545;
+}
+
+.ratings {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.ratings .rating-wrap {
+  font-size: 14px;
+  line-height: 1;
+  position: relative;
+  color: #eaeaea;
+}
+
+.ratings .rating-num {
+  font-size: 18px;
+  line-height: 1;
+  margin-left: 6px;
+  color: #999999;
+}
+
+.product-meta {
+  position: relative;
+  font-weight: 600;
+}
+
+.product-meta .product-size a {
+  position: relative;
+  display: inline-flex;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.product-meta .product-size a:hover {
+  color: #ff4545;
+}
+
+.product-color-variation {
+  position: relative;
+  display: block;
+  font-weight: 600;
+}
+.product-color-variation span {
+  margin-right: 8px;
+}
+.product-color-variation .color-items {
+  position: relative;
+  display: inline-block;
+}
+.product-color-variation .color-items .product-color-image {
+  position: relative;
+  height: 30px;
+  width: 30px;
+  margin-top: 3px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.product-quantity {
+  max-width: 200px;
+  position: relative;
+  margin: 10px 0;
+  border: 1px solid;
+  font-size: 23px;
+}
+.product-quantity > div {
+  align-items: center;
+}
+
+.product-quantity button,
+.product-quantity button:active {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 0;
+}
+
+.product-quantity button.plus {
+  border-left: 1px solid;
+}
+.product-quantity button.minus {
+  border-right: 1px solid;
+}
+
+.product-quantity button:hover,
+.product-quantity button:focus {
+  background-color: #ff4545;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.product-action-buttons {
+  position: relative;
+  margin: 10px 0;
+}
+
+.product-action-buttons .btn:hover,
+.product-action-buttons .btn:focus,
+.product-action-buttons .btn:active:focus {
+  position: relative;
+  background-color: #ff4545;
+  color: #ffffff;
+  border: 1px solid #ff4545;
+  box-shadow: none;
+}

@@ -1,0 +1,37 @@
+
+.product_category{
+    text-transform: capitalize;
+    font-weight: 200;
+    line-height: 2rem;
+}
+.product_title a{
+    text-decoration: none;
+    color: #212121;
+    font-weight: 400;
+}
+
+.product_title a:hover{
+    text-decoration: none;
+    color: #ff4545;
+}
+
+.product_price_offer{
+    color: #ff4545;
+    font-weight: 700;
+}
+
+.btn-add-cart{
+    position: relative;
+    background-color: transparent;
+    color: #ff4545;
+    border: solid 1px #212121;
+    font-weight: 600;
+    transition: all 0.5s ease;
+    text-transform: uppercase;
+}
+
+.btn-add-cart:hover{
+    background-color: #ff4545;
+    color: #ffffff;
+    border-color: #ff4545;
+}
