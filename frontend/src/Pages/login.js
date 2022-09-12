@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -6,11 +6,41 @@ import {
   FormControl,
   FormGroup,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../store/reducers/features/auth/userAuthSlice";
 
 const Login = () => {
+  const [loginUser, setLoginUser] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+
+  const { isLoading, isAuthenticated, token, user, error } = useSelector(
+    (state) => state.auth
+  );
+
+  const dispatch = useDispatch();
+
+  const onChange = (e) => {
+    setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
+  };
+
+  const loginFormSubmit = (e) => {
+    e.preventDefault();
+    dispatch(userLogin(loginUser)).unwrap();
+    setLoginUser({ email: "", password: "" });
+    if (isAuthenticated) {
+      navigate("/account");
+    }
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/account");
+    }
+  }, [dispatch, error, isAuthenticated, isLoading, user, token]);
+
   return (
     <>
       <Header />
@@ -21,12 +51,14 @@ const Login = () => {
             <span>Please login using account detail bellow. </span>
           </div>
           <div className="account-form__inner">
-            <Form>
+            <Form onSubmit={loginFormSubmit} method="post">
               <FormGroup className="mb-4">
                 <FormControl
                   type="email"
+                  name="email"
                   className="form-control"
                   placeholder="Enter your email"
+                  onChange={onChange}
                   required
                 />
               </FormGroup>
@@ -34,8 +66,10 @@ const Login = () => {
               <FormGroup className="mb-4">
                 <FormControl
                   type="password"
+                  name="password"
                   className="form-control"
                   placeholder="Enter your password"
+                  onChange={onChange}
                   required
                 />
               </FormGroup>

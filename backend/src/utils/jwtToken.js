@@ -7,12 +7,16 @@ const sendToken = (user, statusCode, res) => {
     ),
     httpOnly: true,
   };
-
   //send the response
   res
     .status(statusCode)
     .cookie("token", token, options)
     .json({ success: true, user, token });
+};
+
+const withoutObject = (obj, property) => {
+  const { [property]: unused, ...rest } = obj;
+  return rest;
 };
 
 module.exports = sendToken;

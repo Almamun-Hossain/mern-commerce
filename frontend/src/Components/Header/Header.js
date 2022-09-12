@@ -7,25 +7,21 @@ import {
   faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
-import {
-  Container,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavDropdown,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 
 import NavbarToggle from "react-bootstrap/NavbarToggle";
 
 import NavbarCollapse from "react-bootstrap/NavbarCollapse";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
     <header>
       <Navbar bg="light" expand="lg" navabr="light" className="py-3">
         <Container className="d-flex justify-content-between navigation">
-          <NavbarBrand href="/">Free Shopper</NavbarBrand>
+          <NavLink to="/" className={"navbar-brand"}>
+            Free Shopper
+          </NavLink>
           <NavbarToggle
             aria-controls="basic-navbar-nav"
             className="toggle-icon"
@@ -35,13 +31,13 @@ const Header = () => {
             className="justify-content-center"
           >
             <Nav>
-              <Link to="/" className="nav-link active">
+              <NavLink to="/" className="nav-link">
                 Home
-              </Link>
+              </NavLink>
               <NavDropdown title="Products" id="products-category-dropdown">
-                <Link to="" className="dropdown-item">
+                <NavLink to="" className="dropdown-item">
                   Clothes
-                </Link>
+                </NavLink>
                 <Link to="" className="dropdown-item">
                   Books
                 </Link>
@@ -49,9 +45,9 @@ const Header = () => {
                   Shoes
                 </Link>
               </NavDropdown>
-              <Link to="/contact" className="nav-link">
+              <NavLink to="/contact" className="nav-link">
                 Contact
-              </Link>
+              </NavLink>
               {/* <Link to="/login" className="nav-link">
                 Login
               </Link>

@@ -8,7 +8,7 @@ const {
   createProductReview,
   getProductReviews,
   deleteReview,
-} = require("../controllers/ProductController");
+} = require("../controllers/productController");
 const {
   authToAdmin,
   isAuthenticatedUser,

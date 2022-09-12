@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Form,
@@ -6,32 +6,45 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { userRegister } from "../store/reducers/features/auth/userRegisterSlice";
-import { createNewuser, useCreateNewuserMutation } from "../store/reducers/features/auth/userAuthApi";
+import { userRegister } from "../store/reducers/features/auth/userAuthSlice";
 const Register = () => {
   const [registerUser, setRegisterUser] = useState({
     name: "",
     email: "",
     password: "",
   });
+  let navigate = useNavigate();
   const { name, email, password } = registerUser;
   const onChange = (e) => {
     setRegisterUser({ ...registerUser, [e.target.name]: e.target.value });
   };
 
-  const { isLoading, user, error } = useSelector((state) => state.userRegister);
-  const response = useCreateNewuserMutation();
+  const { isLoading, isAuthenticated, token, user, error } = useSelector(
+    (state) => state.auth
+  );
+  // const response = useCreateNewuserMutation();
 
   const dispatch = useDispatch();
 
   const registerFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(userRegister(registerUser));
+    dispatch(userRegister(registerUser)).unwrap();
+    setRegisterUser({
+      name: "",
+      email: "",
+      password: "",
+    });
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/account");
+    }
+  }, [dispatch, error, isAuthenticated, isLoading, user, token]);
 
   return (
     <>
@@ -94,7 +107,7 @@ const Register = () => {
                 </div>
               </div> */}
 
-              <Button type="submit" className="btn-dark">
+              <Button type="submit" className="btn-dark" disabled={isLoading}>
                 Register
               </Button>
             </Form>

@@ -13,12 +13,23 @@ const addressRoute = require("./src/routes/shippingAddressRoute");
 const orderRouter = require("./src/routes/orderRoute");
 const categoryRoute = require("./src/routes/categoryRoute");
 
+//cors options 
+const corsOptions = {
+  //To allow requests from client
+  origin: [
+    "http://localhost:3000",
+    "http://127.0.0.1",
+  ],
+  credentials: true,
+  exposedHeaders: ["set-cookie"],
+};
+
 //preconfiguration
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(corsOptions));
 
 //router
 app.use("/api/v1/", productRoute);

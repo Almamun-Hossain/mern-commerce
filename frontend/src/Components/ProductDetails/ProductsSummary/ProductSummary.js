@@ -107,7 +107,7 @@ const ProductSummary = ({ product }) => {
       {/* Product action button  */}
 
       <div className="product-action-buttons">
-        <Button variant="outline-dark" calssName="btn-cart me-3" size="lg">
+        <Button variant="outline-dark" className="btn-cart me-3" size="lg">
           Add to Cart
         </Button>
         <Button variant="outline-dark" className="btn-wish ms-3" size="lg">

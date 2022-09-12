@@ -11,6 +11,12 @@ import ProductDetails from "./Pages/productDetails";
 import ForgotPassword from "./Pages/forgot-password";
 import { ErrorPage } from "./Pages/404";
 import { ResetPassword } from "./Pages/reset-password";
+import Account from "./Pages/account";
+
+import store from "./store";
+import { loadUser } from "./store/reducers/features/auth/userAuthSlice";
+
+store.dispatch(loadUser());
 
 function App() {
   return (
@@ -28,6 +34,7 @@ function App() {
           path="/password/reset/:resetToken"
           element={<ResetPassword />}
         />
+        <Route path="/account" element={<Account />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

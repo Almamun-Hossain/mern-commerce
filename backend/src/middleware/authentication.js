@@ -15,7 +15,7 @@ exports.isAuthenticatedUser = handleAsyncError(async (req, res, next) => {
 });
 
 exports.authToAdmin = handleAsyncError(async (req, res, next) => {
-  console.log(req.user);
+  //console.log(req.user);
   if (!req.user.isAdmin)
     return next(new ErrorHandler("You are not authorize to access", 401));
   next();

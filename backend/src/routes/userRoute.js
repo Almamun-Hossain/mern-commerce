@@ -10,6 +10,7 @@ const {
   updatePassword,
   getSignleUserDetails,
   updateUserRole,
+  deleteUser,
 } = require("../controllers/userController");
 const {
   isAuthenticatedUser,
@@ -28,6 +29,7 @@ router.route("/admin/users").get(isAuthenticatedUser, authToAdmin, getAllUser);
 router
   .route("admin/user/:userId")
   .get(isAuthenticatedUser, authToAdmin, getSignleUserDetails)
-  .put(isAuthenticatedUser, authToAdmin, updateUserRole);
+  .put(isAuthenticatedUser, authToAdmin, updateUserRole)
+  .delete(isAuthenticatedUser, authToAdmin, deleteUser);
 
 module.exports = router;

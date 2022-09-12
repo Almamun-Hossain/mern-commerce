@@ -34,12 +34,14 @@ const ProductDetails = () => {
                   <Row>
                     <Col md={5} lg={5}>
                       <ProductDetailsImageSlider
+                        key={productDetails._id}
                         images={productDetails.images}
                         loading={isLoading}
                       />
                     </Col>
                     <Col md={7}>
                       <ProductSummary
+                        key={productDetails._id}
                         product={productDetails}
                         loading={isLoading}
                       />
@@ -52,7 +54,7 @@ const ProductDetails = () => {
                     <hr></hr>
                     {productDetails.reviews &&
                       productDetails.reviews.map((review) => {
-                        return <ReviewCard review={review} />;
+                        return <ReviewCard key={review._id} review={review} />;
                       })}
                   </div>
 

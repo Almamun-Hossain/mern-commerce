@@ -4,6 +4,7 @@ const ErrorHandler = require("../utils/errorHandler");
 const sendToken = require("../utils/jwtToken");
 const { sendEmail } = require("../utils/sendEmail");
 const crypto = require("crypto");
+const { resolveSoa } = require("dns");
 
 /**
  * Get all user list
@@ -48,7 +49,7 @@ exports.updateUserRole = handleAsyncError(async (req, res, next) => {
 
 exports.registerUser = handleAsyncError(async (req, res, next) => {
   const { name, email, password } = req.body;
-  const user = await User.create({
+  let user = await User.create({
     name,
     email,
     password,
@@ -69,7 +70,7 @@ exports.loginUser = handleAsyncError(async (req, res, next) => {
   if (!email || !password)
     return next(new ErrorHandler("Please enter email or password", 400));
 
-  const user = await User.findOne({ email }).select("+password");
+  let user = await User.findOne({ email }).select("+password");
   if (!user) return next(new ErrorHandler("Invalid email or password", 401));
   const isPasswordMatched = await user.comparePassword(password);
   if (!isPasswordMatched)
@@ -198,5 +199,22 @@ exports.updatePassword = handleAsyncError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+  });
+});
+
+/**
+ * Delete a user data
+ * Auth to Admin only
+ *
+ */
+
+exports.deleteUser = handleAsyncError(async (req, res, next) => {
+  const userId = req.params.userId;
+  let user = await User.findById(userId);
+  if (!user) return next(new ErrorHandler("User not found", 404));
+  await user.deleteOne({ _id: userId });
+  res.status(200).json({
+    success: true,
+    message: "user deleted successfully",
   });
 });

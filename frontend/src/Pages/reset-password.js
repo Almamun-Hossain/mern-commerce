@@ -12,6 +12,7 @@ import Header from "../Components/Header/Header";
 
 export const ResetPassword = () => {
   const { resetToken } = useParams();
+  console.log(resetToken);
   return (
     <Fragment>
       <Header />
