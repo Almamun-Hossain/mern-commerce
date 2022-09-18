@@ -12,6 +12,8 @@ import Footer from "../Components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogin } from "../store/reducers/features/auth/userAuthSlice";
 
+import { Notify } from "notiflix/build/notiflix-notify-aio";
+
 const Login = () => {
   const [loginUser, setLoginUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -30,16 +32,16 @@ const Login = () => {
     e.preventDefault();
     dispatch(userLogin(loginUser)).unwrap();
     setLoginUser({ email: "", password: "" });
-    if (isAuthenticated) {
-      navigate("/account");
-    }
   };
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/account");
+      navigate("/user/account");
     }
-  }, [dispatch, error, isAuthenticated, isLoading, user, token]);
+    if (error) {
+      Notify.failure(error);
+    }
+  }, [dispatch, error, isAuthenticated]);
 
   return (
     <>

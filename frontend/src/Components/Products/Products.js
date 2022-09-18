@@ -25,14 +25,6 @@ const Products = () => {
               products.map((product) => {
                 return <ProductCard key={product._id} product={product} />;
               })}
-
-            {/* <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard /> */}
           </Row>
         </div>
       </Container>

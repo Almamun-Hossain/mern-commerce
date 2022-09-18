@@ -1,0 +1,30 @@
+.side-menu{
+    position: relative;
+}
+
+.side-menu ul{
+    padding-left: 0px;
+}
+
+.side-menu ul>li{
+    list-style: none;
+    margin: 5px 0;
+    font-weight: 400;
+    padding: 5px;
+}
+
+
+.side-menu a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #212121;
+}
+
+.side-menu ul>li.active{
+    position: relative;
+    background-color: #ff4545;
+}
+
+.side-menu ul>li.active a{
+    color: #ffffff;
+}

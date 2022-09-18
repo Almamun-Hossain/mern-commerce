@@ -1,4 +1,6 @@
-
+.card,.card-img{
+    border-radius: 0;
+}
 .product_category{
     text-transform: capitalize;
     font-weight: 200;
@@ -28,10 +30,11 @@
     font-weight: 600;
     transition: all 0.5s ease;
     text-transform: uppercase;
+    border-radius: 0 !important;
 }
 
 .btn-add-cart:hover{
-    background-color: #ff4545;
-    color: #ffffff;
-    border-color: #ff4545;
+    background-color: #ff4545 !important;
+    color: #ffffff !important;
+    border-color: #ff4545 !important;
 }

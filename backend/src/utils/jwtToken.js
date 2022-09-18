@@ -14,9 +14,4 @@ const sendToken = (user, statusCode, res) => {
     .json({ success: true, user, token });
 };
 
-const withoutObject = (obj, property) => {
-  const { [property]: unused, ...rest } = obj;
-  return rest;
-};
-
 module.exports = sendToken;

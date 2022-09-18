@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { axiosErrorHandler } from "../../../../utils/axiosErrorHandler";
 const LOGOUT_ENDPOINT = "http://localhost:4040/api/v1/user/logout";
 const REGISTER_ENDPOINT = "http://localhost:4040/api/v1/user/register";
 const LOGIN_ENDPOINT = "http://localhost:4040/api/v1/user/login";
@@ -12,7 +13,7 @@ export const userRegister = createAsyncThunk("user/register", async (user) => {
     let { data } = await axios.post(REGISTER_ENDPOINT, user);
     return data;
   } catch (error) {
-    return error.response.data;
+    return axiosErrorHandler(error);
   }
 });
 
@@ -27,16 +28,17 @@ export const userLogin = createAsyncThunk("user/login", async (credential) => {
     let { data } = await axios.post(LOGIN_ENDPOINT, credential, options);
     return data;
   } catch (error) {
-    return error.response.data;
+    return axiosErrorHandler(error);
   }
 });
 
+//load loged in user data
 export const loadUser = createAsyncThunk("user/load", async () => {
   try {
     let { data } = await axios.get(ME_ENDPOINT, { withCredentials: true });
     return data;
   } catch (error) {
-    return error.response.data;
+    return axiosErrorHandler(error);
   }
 });
 
@@ -48,7 +50,7 @@ export const userLogout = createAsyncThunk("user/logout", async () => {
     });
     return data;
   } catch (error) {
-    return error.response.data;
+    return axiosErrorHandler(error);
   }
 });
 
@@ -65,6 +67,7 @@ const userAuthSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(userRegister.pending, (state) => {
       state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(userRegister.fulfilled, (state, action) => {
       if (action.payload.success) {
@@ -93,6 +96,7 @@ const userAuthSlice = createSlice({
     //user login
     builder.addCase(userLogin.pending, (state) => {
       state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(userLogin.fulfilled, (state, action) => {
       if (action.payload.success) {
@@ -122,8 +126,8 @@ const userAuthSlice = createSlice({
 
     //Load user
     builder.addCase(loadUser.pending, (state) => {
-      console.log("load user requested");
       state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(loadUser.fulfilled, (state, action) => {
       if (action.payload.success) {
@@ -147,28 +151,22 @@ const userAuthSlice = createSlice({
 
     //user log out
     builder.addCase(userLogout.pending, (state) => {
-      console.log("logout user requested");
       state.isLoading = true;
+      state.error = null;
     });
     builder.addCase(userLogout.fulfilled, (state, action) => {
-      console.log("logout user success");
-
       if (action.payload.success) {
-        console.log("logout user success true");
-        Cookies.remove("token");
         state.isLoading = false;
         state.isAuthenticated = false;
         state.user = {};
         state.error = null;
         state.token = null;
       } else {
-        console.log("else condition");
         state.isLoading = false;
         state.error = action.payload.message;
       }
     });
     builder.addCase(userLogout.rejected, (state, action) => {
-      console.log("logout user failed");
       state.isLoading = false;
       state.error = action.payload.message;
     });

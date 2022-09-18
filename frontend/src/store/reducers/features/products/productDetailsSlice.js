@@ -1,12 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { axiosErrorHandler } from "../../../../utils/axiosErrorHandler";
 const POST_ENDPOINT = "http://localhost:4040/api/v1/product/";
 
 export const fetchProductDetails = createAsyncThunk(
   "user/fetchProductDetails",
   async (id) => {
-    const res = await axios.get(POST_ENDPOINT + id);
-    return res.data;
+    try {
+      const { data } = await axios.get(POST_ENDPOINT + id);
+      return data;
+    } catch (error) {
+      return axiosErrorHandler(error);
+    }
   }
 );
 

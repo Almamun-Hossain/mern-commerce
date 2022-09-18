@@ -180,13 +180,17 @@ exports.updatePassword = handleAsyncError(async (req, res, next) => {
 
   user.password = req.body.newPassword;
   await user.save();
-  sendToken(user, 200, res);
+  res.status(200).json({
+    success: true,
+    message: "Password Updated Successfully!!",
+  });
+  //sendToken(user, 200, res);
 });
 
 /**
  * Update user profile
  */
-exports.updatePassword = handleAsyncError(async (req, res, next) => {
+exports.updateUserProfile = handleAsyncError(async (req, res, next) => {
   const updateUserData = {
     name: req.body.name,
   };
@@ -199,6 +203,7 @@ exports.updatePassword = handleAsyncError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+    message: "Information Updated Successfully!!",
   });
 });
 

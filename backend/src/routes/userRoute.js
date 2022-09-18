@@ -15,6 +15,7 @@ const {
 const {
   isAuthenticatedUser,
   authToAdmin,
+  authToRegularUser,
 } = require("../middleware/authentication");
 const router = express.Router();
 
@@ -24,7 +25,7 @@ router.route("/user/logout").get(logOut);
 router.route("/user/password/forgot").post(forgotPassword);
 router.route("/user/password/reset/:token").put(resetPassword);
 router.route("/user/me").get(isAuthenticatedUser, getUserDetails);
-router.route("/user/password/update").put(isAuthenticatedUser, updatePassword);
+router.route("/user/password/update").put(isAuthenticatedUser, authToRegularUser, updatePassword);
 router.route("/admin/users").get(isAuthenticatedUser, authToAdmin, getAllUser);
 router
   .route("admin/user/:userId")

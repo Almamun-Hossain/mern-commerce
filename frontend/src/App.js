@@ -34,7 +34,13 @@ function App() {
           path="/password/reset/:resetToken"
           element={<ResetPassword />}
         />
-        <Route path="/account" element={<Account />} />
+        <Route path="/user">
+          <Route path="account" element={<Account />} />
+          <Route path="addresses" element={<h1>All Address</h1>} />
+          <Route path="orders" element={<h1>All Address</h1>} />
+          <Route path="returns-refund" element={<h1>All Address</h1>} />
+          <Route path="reviews" element={<h1>All Address</h1>} />
+        </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

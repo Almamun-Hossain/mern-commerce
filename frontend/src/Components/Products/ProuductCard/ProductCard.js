@@ -20,7 +20,7 @@ const ProductCard = (props) => {
             <div className="product_title">
               <h5>
                 <Link to={`/product/${_id}`} className="text-decoration-none ">
-                  {name}
+                  {name.substring(0, 20)} ...
                 </Link>
               </h5>
             </div>
