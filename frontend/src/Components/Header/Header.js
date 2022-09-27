@@ -13,8 +13,12 @@ import NavbarToggle from "react-bootstrap/NavbarToggle";
 
 import NavbarCollapse from "react-bootstrap/NavbarCollapse";
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { totalCartItem } from "../../store/reducers/features/cart/cartSelector";
 
 const Header = () => {
+  const state = useSelector((state) => state);
+  let total = totalCartItem(state);
   return (
     <header>
       <Navbar bg="light" expand="lg" navabr="light" className="py-3">
@@ -61,7 +65,7 @@ const Header = () => {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Link>
             <Link to="/cart" className="iconic-link nav-link">
-              <FontAwesomeIcon icon={faCartShopping} />
+              <FontAwesomeIcon icon={faCartShopping} /> <b>{total}</b>
             </Link>
             <Link to="/login" className="iconic-link nav-link">
               <FontAwesomeIcon icon={faUser} />

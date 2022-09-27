@@ -1,9 +1,18 @@
 import React from "react";
 import { Button, Card, CardImg, Col } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addToCarts } from "../../../store/reducers/features/cart/cartSlice";
 import "./ProductCard.css";
-const ProductCard = (props) => {
-  const { name, price, category, _id } = props.product;
+const ProductCard = ({ product }) => {
+  const { name, price, category, _id, stock } = product;
+  const dispatch = useDispatch();
+
+  const addToCartSubmit = (e) => {
+    e.preventDefault();
+    const data = { ...product, id: _id, quantity: 1 };
+    dispatch(addToCarts(data));
+  };
   return (
     <Col md={3} sm={12} className="my-2">
       <Card>
@@ -34,7 +43,13 @@ const ProductCard = (props) => {
               </span> */}
             </div>
             <div className="mt-3">
-              <Button className="btn-add-cart">Add to Cart</Button>
+              <Button
+                className="btn-add-cart"
+                onClick={addToCartSubmit}
+                disabled={stock <= 0 ? true : false}
+              >
+                Add to Cart
+              </Button>
             </div>
           </div>
         </div>

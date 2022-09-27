@@ -1,0 +1,29 @@
+.cart-item{
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 0;
+}
+
+.cart-item .product-title a {
+    text-decoration: none;
+    color: #212121;
+    font-weight: 400;
+}
+
+.cart-item .product-quantity{
+    position: relative;
+    margin: 15px 0px;
+}
+.centering-middle{
+    position: relative;
+    display: grid;
+    height: auto;
+    align-items: center;
+}
+
+.cart-item .product-price{
+    position: relative;
+    font-size: 20px;
+    font-weight: 700;
+}

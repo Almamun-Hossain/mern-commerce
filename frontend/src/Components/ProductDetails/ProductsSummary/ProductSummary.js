@@ -6,8 +6,15 @@ import { Button, Image } from "react-bootstrap";
 import ReactStars from "react-rating-stars-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCarts,
+  cartState,
+} from "../../../store/reducers/features/cart/cartSlice";
 const ProductSummary = ({ product }) => {
   let [quantity, setQuantity] = useState(1);
+  let { isLoading, carts, error, message } = useSelector(cartState);
+  const dispatch = useDispatch();
 
   const options = {
     edit: false,
@@ -20,12 +27,21 @@ const ProductSummary = ({ product }) => {
   };
 
   let increaseQuantity = () => {
-    setQuantity((quantity += 1));
+    if (product.stock > quantity) {
+      setQuantity((quantity += 1));
+    }
   };
+
   let decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity((quantity -= 1));
     }
+  };
+
+  const addToCartSubmit = (e) => {
+    e.preventDefault();
+    const data = { ...product, id: product._id, quantity: quantity };
+    dispatch(addToCarts(data));
   };
 
   return (
@@ -90,6 +106,18 @@ const ProductSummary = ({ product }) => {
       </div>
       {/* Product Color end */}
 
+      {/* Show the stock status  */}
+
+      <h4 className="my-2">
+        {product.stock > 0 ? (
+          <span className="text-success">In Stock:</span>
+        ) : (
+          <span className="text-danger">In Stock:</span>
+        )}
+        {product.stock}
+      </h4>
+      {/* Show the stock status end  */}
+
       {/* Shopping Quantity start */}
       <div className="product-quantity">
         <div className="d-flex justify-content-between">
@@ -97,7 +125,12 @@ const ProductSummary = ({ product }) => {
             <FontAwesomeIcon icon={faMinus} />
           </Button>
           <span className="quantity-number">{quantity}</span>
-          <Button variant="light" className="plus" onClick={increaseQuantity}>
+          <Button
+            variant="light"
+            className="plus"
+            onClick={increaseQuantity}
+            disabled={product.stock >= quantity ? true : false}
+          >
             <FontAwesomeIcon icon={faPlus} />
           </Button>
         </div>
@@ -107,7 +140,13 @@ const ProductSummary = ({ product }) => {
       {/* Product action button  */}
 
       <div className="product-action-buttons">
-        <Button variant="outline-dark" className="btn-cart me-3" size="lg">
+        <Button
+          variant="outline-dark"
+          className="btn-cart me-3"
+          size="lg"
+          onClick={addToCartSubmit}
+          disabled={product.stock <= 0 ? true : false}
+        >
           Add to Cart
         </Button>
         <Button variant="outline-dark" className="btn-wish ms-3" size="lg">
