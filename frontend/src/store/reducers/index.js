@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import addressSlice from "./features/address/addressSlice";
 import userAuthSlice from "./features/auth/userAuthSlice";
 import userResetPasswordSlice from "./features/auth/userResetPasswordSlice";
 import cartSlice from "./features/cart/cartSlice";
@@ -11,4 +12,5 @@ export default combineReducers({
   auth: userAuthSlice,
   resetPassword: userResetPasswordSlice,
   cart: cartSlice,
+  addresses: addressSlice,
 });

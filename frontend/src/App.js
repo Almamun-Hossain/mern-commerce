@@ -15,6 +15,11 @@ import Account from "./Pages/account";
 
 import store from "./store";
 import { loadUser } from "./store/reducers/features/auth/userAuthSlice";
+import Address from "./Pages/address";
+import Orders from "./Pages/orders";
+import ReturnRefund from "./Pages/return-refund";
+import Reviews from "./Pages/reviews";
+import Checkout from "./Pages/checkout";
 
 store.dispatch(loadUser());
 
@@ -34,12 +39,15 @@ function App() {
           path="/password/reset/:resetToken"
           element={<ResetPassword />}
         />
+
+        <Route path="/checkout" element={<Checkout />} />
+
         <Route path="/user">
           <Route path="account" element={<Account />} />
-          <Route path="addresses" element={<h1>All Address</h1>} />
-          <Route path="orders" element={<h1>All Address</h1>} />
-          <Route path="returns-refund" element={<h1>All Address</h1>} />
-          <Route path="reviews" element={<h1>All Address</h1>} />
+          <Route path="addresses" element={<Address />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="returns-refund" element={<ReturnRefund />} />
+          <Route path="reviews" element={<Reviews />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

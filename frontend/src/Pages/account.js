@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Account/Sidebar/Sidebar";
 import InformationUpdate from "../Components/Account/Update/InformationUpdate";
 import PasswordsUpdate from "../Components/Account/Update/PasswordUpdate";
+import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import { userLogout } from "../store/reducers/features/auth/userAuthSlice";
 
@@ -58,6 +59,7 @@ const Account = () => {
           </div>
         </div>
       </Container>
+      <Footer />
     </Fragment>
   );
 };

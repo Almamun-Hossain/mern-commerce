@@ -76,6 +76,11 @@ exports.updateOrderShippingStatus = handleAsyncError(async (req, res, next) => {
   res.status(200).json({ success: true, order });
 });
 
+/**
+ *When a product has been shipped update the product stock
+ * @param {objectId} id
+ * @param {quantity number type} quantity
+ */
 const updateStock = async (id, quantity) => {
   const product = await Product.findById(id);
 

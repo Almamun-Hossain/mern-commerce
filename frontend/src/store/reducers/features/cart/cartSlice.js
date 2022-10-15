@@ -193,12 +193,10 @@ const cartSlice = createSlice({
       // let update = action.payload.update;
       // console.log(typeof update);
       // state.isLoading = false;
-      // //state.carts = [...state.carts, { update }];
+      // state.carts = [...state.carts, { update }];
       // //localStorage.setItem("cart", JSON.stringify(state.carts));
     });
     builder.addCase(loadCarts.rejected, (state, action) => {
-      console.log("rejected");
-      console.log(action);
       state.isLoading = false;
       state.message = null;
       state.error = "Operatin failed with unknown error";

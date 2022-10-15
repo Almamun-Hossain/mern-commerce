@@ -11,6 +11,7 @@ import {
   totalPrice,
   totalTax,
 } from "../store/reducers/features/cart/cartSelector";
+import { Link } from "react-router-dom";
 const Cart = () => {
   let state = useSelector((state) => state);
   let { carts } = useSelector(cartState);
@@ -52,9 +53,9 @@ const Cart = () => {
           </div>
         </div>
         <div className="float-end my-2">
-          <Button size="lg" variant="secondary">
+          <Link to="/checkout" className="btn btn-secondary btn-lg">
             Checkout
-          </Button>
+          </Link>
         </div>
       </Container>
       <Footer />

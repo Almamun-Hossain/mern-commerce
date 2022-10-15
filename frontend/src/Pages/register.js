@@ -42,7 +42,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/account");
+      navigate("/user/account");
     }
   }, [dispatch, error, isAuthenticated, isLoading, user, token]);
 

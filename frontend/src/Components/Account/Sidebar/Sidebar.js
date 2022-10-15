@@ -6,20 +6,20 @@ const Sidebar = () => {
   return (
     <div className="side-menu">
       <ul>
-        <li className="main-title active">
+        <li className="">
           <NavLink to="/user/account">My Account</NavLink>
         </li>
         <li className="">
-          <Link to="/user/addresses">Addess Book</Link>
+          <NavLink to="/user/addresses">Addess Book</NavLink>
         </li>
         <li className="">
-          <Link to="/user/orders">Oders</Link>
+          <NavLink to="/user/orders">Oders</NavLink>
         </li>
         <li className="">
-          <Link to="/user/returns-refund">Returns and Refund</Link>
+          <NavLink to="/user/returns-refund">Returns and Refund</NavLink>
         </li>
         <li className="">
-          <Link to="/user/reviews">Reviews</Link>
+          <NavLink to="/user/reviews">Reviews</NavLink>
         </li>
       </ul>
     </div>

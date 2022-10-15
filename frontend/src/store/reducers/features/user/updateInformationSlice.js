@@ -4,6 +4,7 @@ import { axiosErrorHandler } from "../../../../utils/axiosErrorHandler";
 const USERINFO_UPDATE_ENDPOINT =
   "http://localhost:4040/api/v1/user/info/update";
 
+//function to update the user information
 const udpateUserInformation = createAsyncThunk(
   "user/update",
   async (updateData) => {

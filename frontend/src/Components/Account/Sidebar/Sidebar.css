@@ -20,6 +20,10 @@
     color: #212121;
 }
 
+.side-menu a.active{
+    color: #ff4545;
+}
+
 .side-menu ul>li.active{
     position: relative;
     background-color: #ff4545;
