@@ -129,7 +129,7 @@ const ProductSummary = ({ product }) => {
             variant="light"
             className="plus"
             onClick={increaseQuantity}
-            disabled={product.stock >= quantity ? true : false}
+            disabled={product.stock <= quantity ? true : false}
           >
             <FontAwesomeIcon icon={faPlus} />
           </Button>
