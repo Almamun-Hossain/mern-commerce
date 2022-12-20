@@ -24,7 +24,7 @@ const CartCard = ({ item }) => {
                 src="images/item-1.jpg"
                 className="img-fluid"
                 style={{ width: "100px" }}
-                alt="cart product image"
+                alt="cart product"
               />
             </div>
             <div className="product-title centering-middle">

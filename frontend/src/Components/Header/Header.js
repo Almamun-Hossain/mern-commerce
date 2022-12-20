@@ -19,9 +19,10 @@ import { totalCartItem } from "../../store/reducers/features/cart/cartSelector";
 const Header = () => {
   const state = useSelector((state) => state);
   let total = totalCartItem(state);
+  let { isAuthenticated } = state.auth;
   return (
     <header>
-      <Navbar bg="light" expand="lg" navabr="light" className="py-3">
+      <Navbar bg="light" expand="lg" navbar="light" className="py-3">
         <Container className="d-flex justify-content-between navigation">
           <NavLink to="/" className={"navbar-brand"}>
             Free Shopper
@@ -67,7 +68,7 @@ const Header = () => {
             <Link to="/cart" className="iconic-link nav-link">
               <FontAwesomeIcon icon={faCartShopping} /> <b>{total}</b>
             </Link>
-            <Link to="/login" className="iconic-link nav-link">
+            <Link to={isAuthenticated?"/user/account":"/login"} className="iconic-link nav-link">
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </Nav>

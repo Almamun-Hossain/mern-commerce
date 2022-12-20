@@ -1,24 +1,24 @@
-.category-card{
-    position: relative;
-    padding: 0;
-    margin: 0;
-    height: 130px;
-    background: url("/images/item-1.jpg") no-repeat center;
-    background-size: cover;
+.category-card {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  height: 130px;
+  background: url("../../../../public/images/item-1.jpg") no-repeat center;
+  background-size: cover;
 }
-.category-title{
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(250, 250, 250, 0.8);
-    color: #212121;
-    font-weight: 500;
-    transition: all 1s ease;
+.category-title {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(250, 250, 250, 0.8);
+  color: #212121;
+  font-weight: 500;
+  transition: all 1s ease;
 }
 
-.category-card:hover .category-title{
-    display: flex;
+.category-card:hover .category-title {
+  display: flex;
 }

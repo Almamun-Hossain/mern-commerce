@@ -53,7 +53,7 @@ exports.getDetailsShippingAddress = handleAsyncError(async (req, res, next) => {
 });
 
 /**
- * Update existig address
+ * Update existing address
  * Required address id
  * and it's required authentication
  */
@@ -87,7 +87,7 @@ exports.updateShippingAddress = handleAsyncError(async (req, res, next) => {
 });
 
 /**
- * This method is to delete bussiness address
+ * This method is to delete business address
  * Need to pass the address id
  * and it's required authentication
  */

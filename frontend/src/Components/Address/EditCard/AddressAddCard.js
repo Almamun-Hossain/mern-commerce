@@ -49,7 +49,7 @@ function AddressAddCard() {
     console.log(stateCities);
   };
 
-  //input onchnage the state data
+  //input onchange the state data
   const inputOnchange = (e) => {
     e.preventDefault();
     setFormData({ ...formData, [e.target.name]: e.target.value });

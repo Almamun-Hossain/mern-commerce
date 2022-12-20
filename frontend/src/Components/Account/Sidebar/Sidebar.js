@@ -1,6 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -10,10 +10,10 @@ const Sidebar = () => {
           <NavLink to="/user/account">My Account</NavLink>
         </li>
         <li className="">
-          <NavLink to="/user/addresses">Addess Book</NavLink>
+          <NavLink to="/user/addresses">Address Book</NavLink>
         </li>
         <li className="">
-          <NavLink to="/user/orders">Oders</NavLink>
+          <NavLink to="/user/orders">Orders</NavLink>
         </li>
         <li className="">
           <NavLink to="/user/returns-refund">Returns and Refund</NavLink>

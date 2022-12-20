@@ -40,7 +40,7 @@ exports.getSingleCategory = handleAsyncError(async (req, res, next) => {
  * Auth to admin only
  */
 
-exports.udpateCategory = handleAsyncError(async (req, res, next) => {
+exports.updateCategory = handleAsyncError(async (req, res, next) => {
   const { categoryId } = req.params;
 
   let category = await Category.findById(categoryId);

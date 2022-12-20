@@ -1,5 +1,5 @@
 const express = require("express");
-const { getAllCategory, insertCategory, getSingleCategory, udpateCategory, deleteCategory } = require("../controllers/categoryController");
+const { getAllCategory, insertCategory, getSingleCategory, updateCategory, deleteCategory } = require("../controllers/categoryController");
 const {
   isAuthenticatedUser,
   authToAdmin,
@@ -15,7 +15,7 @@ router
 router
   .route('/:categoryId')
   .get(getSingleCategory)
-  .put(isAuthenticatedUser, authToAdmin, udpateCategory)
+  .put(isAuthenticatedUser, authToAdmin, updateCategory)
   .delete(isAuthenticatedUser, authToAdmin, deleteCategory);
 
 module.exports = router;

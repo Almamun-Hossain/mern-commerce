@@ -9,7 +9,7 @@ import {
   addressState,
   fetchUserAddress,
 } from "../store/reducers/features/address/addressSlice";
-import AddresssCard from "../Components/Address/AddressCard/AddresssCard";
+import AddressCard from "../Components/Address/AddressCard/AddressCard";
 import AddressEditCard from "../Components/Address/EditCard/AddressEditCard";
 import AddressAddCard from "../Components/Address/EditCard/AddressAddCard";
 
@@ -21,7 +21,7 @@ function Address() {
   const handleClose = () => setShow(false);
   useEffect(() => {
     dispatch(fetchUserAddress());
-  }, [dispatch]);
+  }, [dispatch, addresses]);
 
   return (
     <Fragment>
@@ -35,7 +35,7 @@ function Address() {
             <div className="right-container col-md-9 col-lg-9 col-9">
               {/* Edit Profile Information like name, email, gende,dob etc */}
               {/* Section  title */}
-              <div className="section-title d-flex justify-content-between mb-3">
+              <div className="section-title d-flex justify-content-between my-2">
                 <h5>All business Address</h5>{" "}
                 <button
                   className="btn btn-sm btn-primary px-3"
@@ -46,7 +46,7 @@ function Address() {
               </div>
               {addresses &&
                 addresses.map((address) => {
-                  return <AddresssCard key={address._id} data={address} />;
+                  return <AddressCard key={address._id} data={address} />;
                 })}
             </div>
           </div>

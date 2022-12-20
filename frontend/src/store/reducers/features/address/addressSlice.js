@@ -38,6 +38,20 @@ export const addNewAddress = createAsyncThunk(
 );
 
 /**
+ * Delete an user existing address
+ * this function will accept a user id
+ */
+export const deleteAddress = createAsyncThunk("user/deleteAddress", async (addressId) => {
+  try {
+    let { data } = await axios.delete(`${ADDRESS_ENDPOINT}${addressId}`, {withCredentials: true});
+    return data;
+  } catch (error) {
+    return axiosErrorHandler(error);
+  }
+})
+
+
+/**
  * Creating address slice as it will perform like reducer
  * Responsible to add new address, upadte address, delete address, load address
  * for authenticate user.
@@ -61,7 +75,7 @@ const addressSlice = createSlice({
     builder.addCase(fetchUserAddress.rejected, (state, action) => {
       state.isLoading = false;
       state.message = null;
-      state.error = "Operatin failed with unknown error";
+      state.error = "Operation failed with unknown error";
     });
 
     /**
@@ -86,7 +100,32 @@ const addressSlice = createSlice({
     builder.addCase(addNewAddress.rejected, (state, action) => {
       state.isLoading = false;
       state.message = null;
-      state.error = "Operatin failed with unknown error";
+      state.error = "Operation failed with unknown error";
+    });
+
+
+    /**
+     * Builder for delete an address 
+     * and then update the store data
+     */
+
+    builder.addCase(deleteAddress.pending, (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+      state.message = null;
+    });
+    builder.addCase(deleteAddress.fulfilled, (state, action)=>{
+      state.isLoading = false;
+      if (action.payload.success) {
+        state.message = "Address deleted successfully";
+      } else {
+        state.error = "Something wrong to delete address";
+      }
+    });
+    builder.addCase(deleteAddress.rejected, (state, action)=>{
+      state.isLoading = false;
+      state.error = "Operation failed";
+      state.message = null;
     });
   },
 });
