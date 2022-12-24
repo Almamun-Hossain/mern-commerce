@@ -4,10 +4,10 @@ const State = require("country-state-city").State;
 const City = require("country-state-city").City;
 
 /**
- * This function is to responponsible to process form data
+ * This function is to responsible to process form data
  * actually when going to work with country-state-city package
- * face some issue. which is when ging to find states cities
- * the fucntion required country isoCode and sateCode.
+ * face some issue. which is when going to find states cities
+ * the function required country isoCode and sateCode.
  * If we just store the country and state's name it's become tough
  * to find country data, country states, and cities
  *
@@ -15,7 +15,7 @@ const City = require("country-state-city").City;
  * but my goal is not to do that and make use of package method
  *
  * So going to store country data as object with isoCode and name
- * aslo same as state.
+ * also same as state.
  */
 
 exports.processFormData = (data) => {
@@ -33,13 +33,14 @@ exports.processFormData = (data) => {
     if (data.state) {
       //find the state data
       stateData = State.getStateByCodeAndCountry(data.state, data.country);
+
     }
 
     if (data.city) {
-      //its returning all cities of a state. but we need a single city infomration
+      //its returning all cities of a state. but we need a single city information
       cityData = City.getCitiesOfState(data.country, data.state);
 
-      //so find the sigle city deatails using the data.city name
+      //so find the single city details using the data.city name
       city = cityData.find((c) => c.name === data.city);
     }
     //update the data
@@ -50,8 +51,7 @@ exports.processFormData = (data) => {
     }
     if (stateData) {
       data.state = { ...stateData };
-    }
-    {
+    } else {
       data.state = null;
     }
 
@@ -61,7 +61,7 @@ exports.processFormData = (data) => {
       data.city = null;
     }
 
-    //finaly return the processed data
+    //finally return the processed data
     return data;
   }
 };

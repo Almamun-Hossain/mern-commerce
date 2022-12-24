@@ -38,12 +38,26 @@ export const addNewAddress = createAsyncThunk(
 );
 
 /**
+ * Update user shipping address
+ * this function should pass a address object
+ * and the address objectId
+ */
+export const updateAddress = createAsyncThunk("user/updateAddress", async ({ formData, addressId }) => {
+  try {
+    let { data } = await axios.put(`${ADDRESS_ENDPOINT}${addressId}`, formData, { withCredentials: true });
+    return data;
+  } catch (error) {
+    return axiosErrorHandler(error)
+  }
+})
+
+/**
  * Delete an user existing address
  * this function will accept a user id
  */
 export const deleteAddress = createAsyncThunk("user/deleteAddress", async (addressId) => {
   try {
-    let { data } = await axios.delete(`${ADDRESS_ENDPOINT}${addressId}`, {withCredentials: true});
+    let { data } = await axios.delete(`${ADDRESS_ENDPOINT}${addressId}`, { withCredentials: true });
     return data;
   } catch (error) {
     return axiosErrorHandler(error);
@@ -92,6 +106,8 @@ const addressSlice = createSlice({
       if (action.payload.success) {
         let newdata = action.payload.address;
         state.addresses = [...state.addresses, { ...newdata }];
+
+
         state.message = "New address added successfully";
       } else {
         state.error = "Something wrong to add new address";
@@ -105,6 +121,33 @@ const addressSlice = createSlice({
 
 
     /**
+     * Builder for update an address
+     * and then update the store data
+     */
+    builder.addCase(updateAddress.pending, (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+      state.message = null;
+    })
+    builder.addCase(updateAddress.fulfilled, (state, action) => {
+      state.isLoading = false;
+      if (action.payload.success) {
+        let newdata = action.payload.address;
+        state.addresses = state.addresses.map((address) => (address._id === newdata._id) ? address = newdata : address);
+        console.log(state.addresses)
+        state.message = "Address updated successfully";
+      } else {
+        state.error = "Something wrong to add new address";
+      }
+    })
+    builder.addCase(updateAddress.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = "Operation failed";
+      state.message = null;
+    })
+
+
+    /**
      * Builder for delete an address 
      * and then update the store data
      */
@@ -114,7 +157,7 @@ const addressSlice = createSlice({
       state.error = null;
       state.message = null;
     });
-    builder.addCase(deleteAddress.fulfilled, (state, action)=>{
+    builder.addCase(deleteAddress.fulfilled, (state, action) => {
       state.isLoading = false;
       if (action.payload.success) {
         state.message = "Address deleted successfully";
@@ -122,7 +165,7 @@ const addressSlice = createSlice({
         state.error = "Something wrong to delete address";
       }
     });
-    builder.addCase(deleteAddress.rejected, (state, action)=>{
+    builder.addCase(deleteAddress.rejected, (state, action) => {
       state.isLoading = false;
       state.error = "Operation failed";
       state.message = null;

@@ -47,8 +47,16 @@ exports.insertShippingAddress = handleAsyncError(async (req, res, next) => {
  * and it's required authentication
  */
 exports.getDetailsShippingAddress = handleAsyncError(async (req, res, next) => {
+  /** 
+   * Get the addressId from the url param
+   * Find the address data from the database
+   */
   const address = await AddressBook.findById(req.params.addressId);
+
+  //if address not found return error 404 with message
   if (!address) return next(new ErrorHandler("Address not found.", 404));
+
+  //finally if address found then return the address
   res.status(200).json({ success: true, address });
 });
 
@@ -64,17 +72,21 @@ exports.updateShippingAddress = handleAsyncError(async (req, res, next) => {
   //if address not found return a error message with status code 404
   if (!address) return next(new ErrorHandler("Address not found.", 404));
 
+
+  //process form data
+  let processedData = processFormData(req.body)
+
   /**
    * Then again send a update query to database
    * this method will find the the address by its id
    * and then it will update the record
    * and return the update data
    *
-   * Here also re-assining the address data with update data
+   * Here also re-assigning the address data with update data
    */
   address = await AddressBook.findByIdAndUpdate(
     req.params.addressId,
-    req.body,
+    processedData,
     {
       new: true,
       runValidators: true,

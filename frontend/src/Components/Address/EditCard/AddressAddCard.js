@@ -37,7 +37,6 @@ function AddressAddCard() {
     setStates(countryStates);
     setCities(null);
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(countryStates);
   };
 
   //state on change load the city
@@ -46,7 +45,6 @@ function AddressAddCard() {
     let stateCities = City.getCitiesOfState(formData.country, e.target.value);
     setCities(stateCities);
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(stateCities);
   };
 
   //input onchange the state data

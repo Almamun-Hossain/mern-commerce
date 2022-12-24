@@ -1,10 +1,9 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Card, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { Container, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../Components/Account/Sidebar/Sidebar";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
-import { Country, State, City } from "country-state-city";
 import {
   addressState,
   fetchUserAddress,
@@ -21,7 +20,7 @@ function Address() {
   const handleClose = () => setShow(false);
   useEffect(() => {
     dispatch(fetchUserAddress());
-  }, [dispatch, addresses]);
+  }, [dispatch, isLoading]);
 
   return (
     <Fragment>
@@ -62,6 +61,7 @@ function Address() {
           <AddressAddCard />
         </Modal.Body>
       </Modal>
+
       <Footer />
     </Fragment>
   );
