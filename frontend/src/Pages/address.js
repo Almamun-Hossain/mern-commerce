@@ -9,12 +9,11 @@ import {
   fetchUserAddress,
 } from "../store/reducers/features/address/addressSlice";
 import AddressCard from "../Components/Address/AddressCard/AddressCard";
-import AddressEditCard from "../Components/Address/EditCard/AddressEditCard";
 import AddressAddCard from "../Components/Address/EditCard/AddressAddCard";
 
 function Address() {
   const [show, setShow] = useState(false);
-  let { isLoading, addresses, error, message } = useSelector(addressState);
+  let { isLoading, addresses } = useSelector(addressState);
   const dispatch = useDispatch();
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);

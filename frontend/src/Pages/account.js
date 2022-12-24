@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Button, Container, FormControl, FormGroup } from "react-bootstrap";
+import React, { Fragment, useEffect } from "react";
+import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import Sidebar from "../Components/Account/Sidebar/Sidebar";
 import InformationUpdate from "../Components/Account/Update/InformationUpdate";
 import PasswordsUpdate from "../Components/Account/Update/PasswordUpdate";
@@ -10,21 +9,18 @@ import Header from "../Components/Header/Header";
 import { userLogout } from "../store/reducers/features/auth/userAuthSlice";
 
 const Account = () => {
-  const { isLoading, isAuthenticated, token, user, error } = useSelector(
+  const { user } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const userClickLogout = () => {
     dispatch(userLogout()).unwrap();
   };
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login");
-    }
-  }, [dispatch, isAuthenticated, user]);
+
+  }, [dispatch, user]);
 
   return (
     <Fragment>

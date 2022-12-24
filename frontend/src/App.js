@@ -20,6 +20,7 @@ import Orders from "./Pages/orders";
 import ReturnRefund from "./Pages/return-refund";
 import Reviews from "./Pages/reviews";
 import Checkout from "./Pages/checkout";
+import UseAuthorization from "./middlewares/UseAuthorization";
 
 store.dispatch(loadUser());
 
@@ -27,6 +28,8 @@ function App() {
   return (
     <>
       <Routes>
+
+        {/* public routes */}
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
@@ -40,15 +43,28 @@ function App() {
           element={<ResetPassword />}
         />
 
-        <Route path="/checkout" element={<Checkout />} />
 
-        <Route path="/user">
-          <Route path="account" element={<Account />} />
-          <Route path="addresses" element={<Address />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="returns-refund" element={<ReturnRefund />} />
-          <Route path="reviews" element={<Reviews />} />
+        {/* Protected User Routes  */}
+        <Route element={<UseAuthorization />}>
+          <Route path="/checkout" element={<Checkout />} />
+
+          <Route path="/user">
+            <Route path="account" element={<Account />} />
+            <Route path="addresses" element={<Address />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="returns-refund" element={<ReturnRefund />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
         </Route>
+
+
+
+        {/* Protected Admin Routes */}
+
+
+        {/* Fallback routes
+        * When routes not found
+        */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>

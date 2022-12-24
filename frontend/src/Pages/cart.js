@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import CartCard from "../Components/Cart/CartCard";
-import { Button, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { cartState } from "../store/reducers/features/cart/cartSlice";
 import {

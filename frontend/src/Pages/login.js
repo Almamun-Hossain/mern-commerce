@@ -6,7 +6,7 @@ import {
   FormControl,
   FormGroup,
 } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import Footer from "../Components/Footer/Footer";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,8 +17,9 @@ import { Notify } from "notiflix/build/notiflix-notify-aio";
 const Login = () => {
   const [loginUser, setLoginUser] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-
-  const { isLoading, isAuthenticated, token, user, error } = useSelector(
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const { isAuthenticated, error } = useSelector(
     (state) => state.auth
   );
 
@@ -35,8 +36,9 @@ const Login = () => {
   };
 
   useEffect(() => {
+
     if (isAuthenticated) {
-      navigate("/user/account");
+      navigate(from, { replace: true });
     }
     if (error) {
       Notify.failure(error);

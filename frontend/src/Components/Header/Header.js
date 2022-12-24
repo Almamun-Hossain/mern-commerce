@@ -50,12 +50,6 @@ const Header = () => {
               <NavLink to="/contact" className="nav-link">
                 Contact
               </NavLink>
-              {/* <Link to="/login" className="nav-link">
-                Login
-              </Link>
-              <Link to="/register" className="nav-link">
-                Register
-              </Link> */}
             </Nav>
           </NavbarCollapse>
           <Nav className="iconic-action">
