@@ -6,11 +6,25 @@ const Category = mongoose.Schema(
       type: String,
       required: true,
     },
+    // thumb: {
+    //   type: mongoose.Types.ObjectId,
+    //   required: false,
+    //   ref: "MediaFile",
+    //   default: null,
+    // },
     thumb: {
-      type: mongoose.Types.ObjectId,
-      required: false,
-      ref: "MediaFile",
-      default: null,
+      filename: {
+        type: String,
+        required: true
+      },
+      path: {
+        type: String,
+        required: true
+      },
+      size: {
+        type: Number,
+        required: true
+      }
     },
     slug: {
       type: String,

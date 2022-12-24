@@ -8,14 +8,14 @@ const path = require("path");
  * its mean where to save the file
  * custom file name
  */
-exports.storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/media/");
   },
   filename: function (req, file, cb) {
     //writing custom file name
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    var ext = utils.getFileExtension(file.originalname);
+    var ext = getFileExtension(file.originalname);
     cb(null, file.fieldname + "-" + uniqueSuffix + "." + ext);
   },
 });
@@ -33,7 +33,7 @@ const uploadFilter = (req, file, cb) => {
 };
 
 //get the file extension from the filename
-exports.getFileExtension = (name) => {
+const getFileExtension = (name) => {
   return path.extname(name).slice(1);
 };
 

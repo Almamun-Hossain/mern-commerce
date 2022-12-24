@@ -33,7 +33,7 @@ const checkCart = () => {
 
 /**
  * Creating the cart slice as its a reducer
- * its includding name, state, action and extra reducers
+ * its including name, state, action and extra reducers
  */
 const cartSlice = createSlice({
   name: "cart",

@@ -1,6 +1,7 @@
 const handleAsyncError = require("../middleware/handleAsyncError");
 const Category = require("../models/categoryModel");
 const ErrorHandler = require("../utils/errorHandler");
+const { upload } = require("../utils/mediaHelper");
 
 /**
  *Get all category
@@ -18,7 +19,13 @@ exports.getAllCategory = handleAsyncError(async (req, res, next) => {
  * Auth to admin only
  */
 exports.insertCategory = handleAsyncError(async (req, res, next) => {
-  const category = await Category.create({ user: req.user.id, ...req.body });
+  const file = req.file;
+  const thumb = {
+    filename: file.filename,
+    path: file.path,
+    size: file.size
+  }
+  const category = await Category.create({ user: req.user.id, thumb, ...req.body });
   res.status(200).json({ success: true, category });
 });
 
@@ -60,11 +67,34 @@ exports.updateCategory = handleAsyncError(async (req, res, next) => {
  * Auth to Admin only
  */
 
-exports.deleteCategory = handleAsyncError(async (req, res, next)=>{
+exports.deleteCategory = handleAsyncError(async (req, res, next) => {
   let category = await Category.findById(req.params.categoryId);
   if (!category) return next(new ErrorHandler("Category not found.", 404));
   await category.remove();
   res
     .status(200)
     .json({ success: true, message: "Category deleted successfully" });
+})
+
+
+
+
+
+
+/**
+ * Test Category creation with files
+*/
+
+exports.testCategory = handleAsyncError(async (req, res, next) => {
+  let { name } = req.body;
+
+  const file = req.file;
+  const thumb = {
+    filename: file.filename,
+    path: file.path,
+    size: file.size
+  }
+  const category = await Category.create({ user: req.user.id, thumb, ...req.body });
+
+  res.status(200).json({ category })
 })

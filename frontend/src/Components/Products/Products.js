@@ -19,7 +19,7 @@ const Products = () => {
         <SectionTitle title="Latest Products" />
         <div className="products_row">
           <Row>
-            {isLoading && <h1>Fetching products...</h1>}
+            {isLoading && <div className="text-center py-3"><h3>Fetching products...</h3></div>}
             {error && <h2>{error}</h2>}
             {products &&
               products.map((product) => {

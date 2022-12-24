@@ -19,6 +19,7 @@ import { totalCartItem } from "../../store/reducers/features/cart/cartSelector";
 const Header = () => {
   const state = useSelector((state) => state);
   let total = totalCartItem(state);
+  let { categories } = state.categories;
   let { isAuthenticated } = state.auth;
   return (
     <header>
@@ -40,15 +41,11 @@ const Header = () => {
                 Home
               </NavLink>
               <NavDropdown title="Products" id="products-category-dropdown">
-                <NavLink to="" className="dropdown-item">
-                  Clothes
-                </NavLink>
-                <Link to="" className="dropdown-item">
-                  Books
-                </Link>
-                <Link to="" className="dropdown-item">
-                  Shoes
-                </Link>
+                {categories && categories.slice(0, 8).map((category) => (
+                  <NavLink to={`category/${category.slug}`} className="dropdown-item" >
+                    {category.name}
+                  </NavLink>
+                ))}
               </NavDropdown>
               <NavLink to="/contact" className="nav-link">
                 Contact
@@ -68,13 +65,13 @@ const Header = () => {
             <Link to="/cart" className="iconic-link nav-link">
               <FontAwesomeIcon icon={faCartShopping} /> <b>{total}</b>
             </Link>
-            <Link to={isAuthenticated?"/user/account":"/login"} className="iconic-link nav-link">
+            <Link to={isAuthenticated ? "/user/account" : "/login"} className="iconic-link nav-link">
               <FontAwesomeIcon icon={faUser} />
             </Link>
           </Nav>
         </Container>
       </Navbar>
-    </header>
+    </header >
   );
 };
 
